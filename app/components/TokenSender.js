@@ -1,5 +1,6 @@
 'use client';
 
+import { BACKEND_BASE_URL } from '@/api';
 import { useState, useEffect } from 'react';
 
 export default function TokenSender({ accessToken, userEmail }) {
@@ -8,7 +9,7 @@ export default function TokenSender({ accessToken, userEmail }) {
     useEffect(() => {
         async function sendToken() {
             try {
-                const res = await fetch('http://localhost:5000/auth/callback', {
+                const res = await fetch(`${BACKEND_BASE_URL}/auth/callback`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ token: accessToken, email: userEmail })
